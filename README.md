@@ -1,7 +1,7 @@
 # election_sentiment
 Sentiment analyzer for presidential hopefuls based of media reports 
 
-## Objective: 
+### Objective: 
 
 1. Monitor a set of media sites (such as the top 10 broadcast news outlets by traffic)
 2. Whenevever an article is published about a presediential canidate, download the article
@@ -9,7 +9,7 @@ Sentiment analyzer for presidential hopefuls based of media reports
 4. Display the results of sentiment change over time for different news outlets
 5. Add correlations to election events
 
-## Technically, this project has three parts
+### Technically, this project has three parts
 
 1. Web scraping
  - LXML and Beautiful Soup
