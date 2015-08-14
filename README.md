@@ -16,9 +16,9 @@ Sentiment analyzer for presidential hopefuls based of media reports
  - SQLAlchemy w/ postgres
 
 2. Data analysis
-- Simple trend analysis
-- etc...
-- Creation of JSON documments
+ - Simple trend analysis
+ - etc...
+ - Creation of JSON documments
 
 3. Website
-- Flask
+ - Flask
