@@ -21,4 +21,6 @@ Sentiment analyzer for presidential hopefuls based of media reports
  - Creation of JSON documments
 
 3. Website
+ - Heroku
  - Flask
+ - D3.js
