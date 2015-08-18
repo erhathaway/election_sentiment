@@ -24,3 +24,6 @@ Sentiment analyzer for presidential hopefuls based of media reports
  - Heroku
  - Flask
  - D3.js
+
+
+![Workflow for new project contributors](/img/git_workflow.png)
