@@ -1,0 +1,54 @@
+
+HTML Basics
+----------------------------------
+
+HTML describes the DOM (Documment object Model)
+
+The DOM is a model that is made up of a bunch of objects. The objects are defined elements. Elements are in turn, marked up by tags. 
+
+To clarify the distinction, see this:
+http://www.456bereastreet.com/archive/200508/html_tags_vs_elements_vs_attributes/
+
+Elments usually have an opening and closing tag, but they don't always have to have them, it depends what the tag is. 
+
+Some common tags are:
+http://www.w3schools.com/tags/
+
+Tags can be referenced by an id or class. Only one Id can exist for a single web page, otherwise, even though the page may still render, it is considered broken code. However, you can have as many of the same classes on a single web page. 
+
+Id and class are very useful for targeting specific DOM elements with CSS or javascript. 
+
+
+Webscraping Basics
+----------------------------------
+To scrape a website, you need to give the scraper the location of a specific DOM element. 
+
+There are three common ways used to specify an elment:
+
+- xpath
+- regex
+- id / class
+
+XPATH:
+
+if you think of the DOM as a bunch of elements, and each element is a node, and a colection of elements that are children to another element as another node, then you can think of the DOM as a node tree. Xpath defines the route to transverse the node path in order to arrive at a specific element. This is very fast, but tends to also be very specific. If there are inconsistencies between pages that should be the same, the xpath may break. 
+
+You can easily get the xpath in Chrome for an element by:
+1) right-clicking on a HTML item 
+2) clicking "inspect element"
+3) select an HTML elment and right click
+4) clicking "copy xpath"
+
+REGEX:
+
+Regex stands for regular expressions. Regex uses a sequence of characters to define a search pattern. It is one of the fastest ways to find a pattern in a large string of characters. Most find functions/methods implement regex.
+
+Regex is notoriously finicky, you will want to double check everything!
+
+You a site like http://www.regexr.com/
+to make sure you are doing it right. Also, be aware of confirmation bias. You want to make sure that not only does the regex pick up what you want, but it also doesn't pick up what you dont want. Make sure to test out edge cases!
+
+ID / CLASS :
+
+Using ID and CLASS is often the prefered way to write scrapping code. You should start by referencing the ID of the section that you want to scrape. Because IDs are unique, you know the scraper will only pick up that section. You can then use IDs and Classes to iterate over sub-sections if you want to selectively pull out information from certain elements.
+
