@@ -45,7 +45,7 @@ Regex stands for regular expressions. Regex uses a sequence of characters to def
 
 Regex is notoriously finicky, you will want to double check everything!
 
-You a site like http://www.regexr.com/
+Use a site like http://www.regexr.com/
 to make sure you are doing it right. Also, be aware of confirmation bias. You want to make sure that not only does the regex pick up what you want, but it also doesn't pick up what you dont want. Make sure to test out edge cases!
 
 ID / CLASS :
