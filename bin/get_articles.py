@@ -1,13 +1,8 @@
 # import mechanize
 from bs4 import BeautifulSoup
-# import urlparse
-# import sys
-# import os
-import re
-
 from django.utils.encoding import smart_str
+import re
 import dryscrape
-
 
 def find_articles_by_form(site, search_form_index, search_controler_name, search_term):
   browserSpecs = 'Mozilla/5.0 (X11; Linux x86_64; rv:18.0) Gecko/20100101 Firefox/18.0 (compatible;)'
@@ -21,10 +16,14 @@ def find_articles_by_form(site, search_form_index, search_controler_name, search
   print result.read()
   print result.geturl()
 
-def find_articles_by_url(search_url1, slug, search_url2):
+def find_articles_by_url(search_url1, slug, search_url2="", page="", search_url3=""):
+  # form address
+  address = search_url1+slug+search_url2+str(page)+search_url3
+  # print address
+  
   # render html with dryscrape
   session = dryscrape.Session()
-  session.visit(search_url1+slug+search_url2)
+  session.visit(address)
   eval_url = smart_str(session.url())
   html = session.body() 
 
@@ -37,19 +36,23 @@ def find_articles_by_url(search_url1, slug, search_url2):
     
     # url
     link = x.find('a', href=True)
-    print "Found the URL:", link['href']
+    print link['href']
     
     # headline
     try:
       headline = x.find('span', {'class':"printHeadline"})
-      print smart_str(headline.contents[0]) 
+      info = re.search('"(.*)', smart_str(headline.contents[0])) 
+      info = info.group(0)[1:-1]
+      print info
     except Exception as e:
       print e
 
     # author
     try:
       author =  x.find('span', {'class':"byline"})
-      print smart_str(author.contents[0]) 
+      info = re.search('(By )(.*)', smart_str(author.contents[0]))
+      info = info.group(2) 
+      print info
     except Exception as e:
       print e
     
@@ -75,10 +78,15 @@ def find_articles_by_url(search_url1, slug, search_url2):
 
 site = "http://www.nytimes.com"
 search_url1 = "http://query.nytimes.com/search/sitesearch/?action=click&contentCollection&region=TopBar&WT.nav=searchWidget&module=SearchSubmit&pgtype=Homepage#/"
-# search_url2 = "/since1851/allresults/1/allauthors/newest/"
-search_url2 = ""
-search_term = "rand paul"
+search_term = "rand+paul"
+search_url2 = "/since1851/allresults/"
+page = 1
+search_url3 = "/allauthors/newest/"
+
 # find_search(site)
 # find_articles(site, 0, "search-input","texas is awesome")
-find_articles_by_url(search_url1, search_term, search_url2)
+find_articles_by_url(search_url1, search_term, search_url2, page, search_url3)
+
+
+# http://query.nytimes.com/search/sitesearch/?action=click&contentCollection&region=TopBar&WT.nav=searchWidget&module=SearchSubmit&pgtype=Homepage#/rand+paul/since1851/allresults/2/
 
