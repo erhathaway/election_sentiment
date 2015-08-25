@@ -18,12 +18,15 @@ create table article (
   id integer primary key autoincrement,
   source_id integer not null,
   canidate_id integer not null,
+  canidate_mention_count integer,
   url text not null,
+  headline text not null,
   author_1 text not null,
   author_2 text,
   author_3 text,
-  contents blob not null,
+  contents blob,
   publish_date numberic not null,
+  scrape_status text not null,
   FOREIGN KEY(source_id) REFERENCES sources(id),
   FOREIGN KEY(canidate_id) REFERENCES canidate(id)
 );
