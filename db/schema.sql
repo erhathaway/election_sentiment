@@ -37,3 +37,4 @@ create table sentiment (
   score real not null,
   article_id integer not null,
   FOREIGN KEY(article_id) REFERENCES article(id)
+);
