@@ -65,7 +65,7 @@ def find_articles_by_url(search_url1, slug, search_url2="", page="", search_url3
 
 site = "http://www.nytimes.com"
 search_url1 = "http://query.nytimes.com/search/sitesearch/?action=click&contentCollection&region=TopBar&WT.nav=searchWidget&module=SearchSubmit&pgtype=Homepage#/"
-search_term = "rand+paul"
+search_term = "hillary clinton"
 search_url2 = "/since1851/allresults/"
 page = 2
 search_url3 = "/allauthors/newest/"
