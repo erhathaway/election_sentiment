@@ -1,27 +1,26 @@
 first_name, last_name, party
-CHAFEE, democrat
-CLINTON, democrat
-O'MALLEY, democrat
-SANDERS, democrat
-WEBB, democrat
-BIDEN, democrat
-WARREN, democrat
-
-BUSH
-CARSON
-CHRISTIE
-CRUZ
-FIORINA
-GILMORE
-GRAHAM
-HUCKABEE
-JINDAL
-KASICH
-PATAKI
-PAUL
-PERRY
-RUBIO
-SANTORUM
-TRUMP  
-WALKER
-ROMNEY
+lincoln, CHAFEE, democrat
+hillary, CLINTON, democrat
+martin, O'MALLEY, democrat
+bernie, SANDERS, democrat
+jim, WEBB, democrat
+joe, BIDEN, democrat
+elizabeth, WARREN, democrat
+jeb, BUSH, republican
+ben, CARSON, republican
+chris, CHRISTIE, republican
+ted, CRUZ, republican
+carly, FIORINA, republican
+jim, GILMORE, republican
+lindsey, GRAHAM, republican
+mike, HUCKABEE, republican
+bobby, JINDAL, republican
+john, KASICH, republican
+george, PATAKI, republican
+rand, PAUL, republican
+rick, PERRY, republican
+marco, RUBIO, republican
+rick, SANTORUM, republican
+donald, TRUMP, republican
+scott, WALKER, republican
+mitt, ROMNEY, republican
