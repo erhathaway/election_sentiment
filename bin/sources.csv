@@ -2,7 +2,6 @@ name, type, search_term_position, page_position, starting_page, search_url1, sea
 New York Times,print,0,1,1,"http://query.nytimes.com/search/sitesearch/?action=click&contentCollection&region=TopBar&WT.nav=searchWidget&module=SearchSubmit&pgtype=Homepage#/","/since1851/allresults/","/allauthors/newest/"
 Washington Post,print,0,1,1,"https://www.washingtonpost.com/newssearch/?query=","&contenttype=&searchType=&blogName=&datefilter=All+Since+2005#page-",""
 San Francisco Chronicle,print,0,1,1,"http://www.sfgate.com/search/?action=search&searchindex=gsa&query=","&page=",""
-USA Today,print,
 The Wall Street Journal,print,0,1,1,"http://www.wsj.com/search/term.html?KEYWORDS=","&page=",""
 Los Angeles Times,print,1,0,1,"http://www.latimes.com/search/dispatcher.front?page=","&target=all&Query=","#trb_search"
 New York Post,print,1,0,1,"http://nypost.com/page/","/?s=",""
