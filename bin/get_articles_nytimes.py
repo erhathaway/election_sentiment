@@ -28,6 +28,7 @@ def find_articles_by_url(search_url1, slug, search_url2="", page="", search_url3
     # headline
     try:
       headline = x.find('span', {'class':"printHeadline"})
+      #remove "Print Headline: " from headline
       info = re.search('"(.*)', smart_str(headline.contents[0])) 
       info = info.group(0)[1:-1]
       print info
@@ -37,6 +38,7 @@ def find_articles_by_url(search_url1, slug, search_url2="", page="", search_url3
     # author
     try:
       author =  x.find('span', {'class':"byline"})
+      #remove "By " from author info
       info = re.search('(By )(.*)', smart_str(author.contents[0]))
       info = info.group(2) 
       print info
@@ -54,7 +56,9 @@ def find_articles_by_url(search_url1, slug, search_url2="", page="", search_url3
     try:
       summary = x.find('p', {'class':"summary"})
       info = ""
+      #iterate through every line of summary contents
       for i in summary.contents:
+        #skip formating tags embeded in summary info
         if re.match('<.*>', smart_str(i)) is None:
           info += smart_str(i).strip() + " "
       print info
