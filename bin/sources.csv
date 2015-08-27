@@ -1,0 +1,15 @@
+name, type, search_url1, search_url2, starting_page, search_url3
+New York Times, print, "http://query.nytimes.com/search/sitesearch/?action=click&contentCollection&region=TopBar&WT.nav=searchWidget&module=SearchSubmit&pgtype=Homepage#/","/since1851/allresults/",1,"/allauthors/newest/"
+Washington Post, print,
+San Francisco Chronicle, print,
+USA Today, print,
+The Wall Street Journal, print,
+Los Angeles Times, print
+San Jose Mercury News, print
+New York Post, print
+Daily News, print
+Chicago Sun-Times, print
+The Denver Post, print
+Chicago Tribune, print
+The Orange County Register, print
+Newsday, print

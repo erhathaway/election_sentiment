@@ -2,7 +2,11 @@ drop table if exists sources;
 create table sources (
   id integer primary key autoincrement,
   name text not null,
-  type text not null
+  type text not null,
+  search_url1 text not null,
+  search_url2 text not null,
+  starting_page text not null,
+  search_url3 text not null
 );
 
 drop table if exists canidate;
