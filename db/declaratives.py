@@ -1,6 +1,6 @@
 import os
 import sys
-from sqlalchemy import Column, ForeignKey, Integer, String, Sequence, Float, Date, BLOB, TEXT #, Date, Blob
+from sqlalchemy import Column, ForeignKey, Integer, String, Sequence, Float, Date, DateTime, BLOB, TEXT #, Date, Blob
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
@@ -22,8 +22,8 @@ class Source(Base):
   search_url1           = Column(TEXT)
   search_url2           = Column(TEXT)
   search_url3           = Column(TEXT)
-  created_at            = Column(Date, default=_get_date)
-  updated_at            = Column(Date, onupdate=_get_date)
+  created_at            = Column(DateTime, default=_get_date)
+  updated_at            = Column(DateTime, onupdate=_get_date)
 
 class Canidate(Base):
   __tablename__ = 'canidates'
@@ -31,8 +31,8 @@ class Canidate(Base):
   first_name  = Column(String(250), nullable=False)
   last_name   = Column(String(250), nullable=False)
   party       = Column(String(250), nullable=False)
-  created_at  = Column(Date, default=_get_date)
-  updated_at  = Column(Date, onupdate=_get_date)
+  created_at  = Column(DateTime, default=_get_date)
+  updated_at  = Column(DateTime, onupdate=_get_date)
 
 class Article(Base):
   __tablename__ = 'articles'
@@ -50,8 +50,8 @@ class Article(Base):
   content       = Column(BLOB, unique=True)
   publish_date  = Column(Date, nullable=False)
   scrape_status = Column(String(250), nullable=False)
-  created_at    = Column(Date, default=_get_date)
-  updated_at    = Column(Date, onupdate=_get_date)
+  created_at    = Column(DateTime, default=_get_date)
+  updated_at    = Column(DateTime, onupdate=_get_date)
 
 class Sentiment(Base):
   __tablename__ = 'sentiments'
@@ -59,8 +59,8 @@ class Sentiment(Base):
   score       = Column(Float, nullable=False)
   article_id  = Column(Integer, ForeignKey('articles.id'), nullable=False)
   article     = relationship(Article)
-  created_at  = Column(Date, default=_get_date)
-  updated_at  = Column(Date, onupdate=_get_date)
+  created_at  = Column(DateTime, default=_get_date)
+  updated_at  = Column(DateTime, onupdate=_get_date)
 
 # Connect to db
 engine = create_engine('sqlite:///database.db')
