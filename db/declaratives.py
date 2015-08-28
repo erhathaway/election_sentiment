@@ -66,7 +66,7 @@ class Sentiment(Base):
   updated_at  = Column(DateTime, onupdate=_get_date)
 
 # Connect to db
-engine = create_engine('sqlite:///database.db')
+engine = create_engine('sqlite://///home/ethan/Dropbox/Programs/election_sentiment/db/database.db')
  
 # Create all schema
 Base.metadata.create_all(engine)
