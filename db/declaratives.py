@@ -4,7 +4,7 @@ import datetime
 from sqlalchemy import Column, ForeignKey, Integer, String, Sequence, Float, Date, DateTime, BLOB, TEXT #, Date, Blob
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, UniqueConstraint
 
 def _get_date():
   return datetime.datetime.now()
@@ -34,6 +34,7 @@ class Canidate(Base):
   party       = Column(String(250), nullable=False)
   created_at  = Column(DateTime, default=_get_date)
   updated_at  = Column(DateTime, onupdate=_get_date)
+  __table_args__ = (UniqueConstraint('first_name', 'last_name', name='full_name'),)
 
 class Article(Base):
   __tablename__ = 'articles'
@@ -53,6 +54,7 @@ class Article(Base):
   scrape_status = Column(String(250), nullable=False)
   created_at    = Column(DateTime, default=_get_date)
   updated_at    = Column(DateTime, onupdate=_get_date)
+  __table_args__ = (UniqueConstraint('source_id', 'canidate_id', name='headline'),)
 
 class Sentiment(Base):
   __tablename__ = 'sentiments'
