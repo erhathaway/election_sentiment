@@ -25,7 +25,7 @@ Sentiment analyzer for presidential hopefuls based of media reports
 3. Website
  - Deployment: Heroku
  - Framework: Flask
- - Visulizaiton: D3.js
+ - Visulization: D3.js
  - Database: Postgres using JSON Documents
 
 ### Workflow:
