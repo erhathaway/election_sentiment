@@ -9,7 +9,7 @@ Sentiment analyzer for presidential hopefuls based of media reports
 4. Display the results of sentiment change over time for different news outlets
 5. Add correlations to election events
 
-### Technically, this project has three parts
+### Technical Details:
 
 1. Web scraping
  - LXML and Beautiful Soup
