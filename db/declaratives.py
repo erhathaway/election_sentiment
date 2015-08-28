@@ -13,11 +13,17 @@ Base = declarative_base()
 
 class Source(Base):
   __tablename__ = 'sources'
-  id          = Column(Integer, Sequence('source_id_seq', start=0, increment=1), primary_key=True)
-  name        = Column(String(250), unique=True, nullable=False)
-  source_type = Column(String(250), nullable=False)
-  created_at  = Column(Date, default=_get_date)
-  updated_at  = Column(Date, onupdate=_get_date)
+  id                    = Column(Integer, Sequence('source_id_seq', start=0, increment=1), primary_key=True)
+  name                  = Column(String(250), unique=True, nullable=False)
+  source_type           = Column(String(250), nullable=False)
+  search_term_position  = Column(Integer)
+  page_position         = Column(Integer)
+  starting_page         = Column(String(250))
+  search_url1           = Column(TEXT)
+  search_url2           = Column(TEXT)
+  search_url3           = Column(TEXT)
+  created_at            = Column(Date, default=_get_date)
+  updated_at            = Column(Date, onupdate=_get_date)
 
 class Canidate(Base):
   __tablename__ = 'canidates'
