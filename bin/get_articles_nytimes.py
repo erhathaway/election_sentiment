@@ -3,14 +3,10 @@ from django.utils.encoding import smart_str
 import re
 import dryscrape
 
-def find_articles_by_url(search_url1, slug, search_url2="", page="", search_url3=""):
-  # form address
-  address = search_url1+slug+search_url2+str(page)+search_url3
-  # print address
-
+def find_articles_by_url(url):
   # render html with dryscrape
   session = dryscrape.Session()
-  session.visit(address)
+  session.visit(url)
   eval_url = smart_str(session.url())
   html = session.body() 
 
@@ -74,6 +70,10 @@ search_url2 = "/since1851/allresults/"
 page = 2
 search_url3 = "/allauthors/newest/"
 
-find_articles_by_url(search_url1, search_term, search_url2, page, search_url3)
+# form address
+address = search_url1+search_term+search_url2+str(page)+search_url3
+# print address
+
+find_articles_by_url(address)
 
 
