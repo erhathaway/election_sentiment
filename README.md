@@ -9,11 +9,13 @@ Sentiment analyzer for presidential hopefuls based of media reports
 4. Display the results of sentiment change over time for different news outlets
 5. Add correlations to election events
 
-### Technically, this project has three parts
+### Technical Details:
 
 1. Web scraping
  - LXML and Beautiful Soup
- - SQLAlchemy w/ postgres
+ - SQLAlchemy 
+    - Sqlite for development
+    - Postgres for production
 
 2. Data analysis
  - Simple trend analysis
@@ -21,9 +23,11 @@ Sentiment analyzer for presidential hopefuls based of media reports
  - Creation of JSON documments
 
 3. Website
- - Heroku
- - Flask
- - D3.js
+ - Deployment: Heroku
+ - Framework: Flask
+ - Visulization: D3.js
+ - Database: Postgres using JSON Documents
 
+### Workflow:
 
 ![Workflow for new project contributors](/img/git_workflow.png)
