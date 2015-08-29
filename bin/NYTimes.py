@@ -9,22 +9,23 @@ sys.path.append("../lib")
 
 from base_scraper import BaseScraper
 
+from django.utils.encoding import smart_str
+import re
+
 class NYTimes(BaseScraper):
 
   def iterable(self, soup):
     search_results = soup.find("div", {"id": "searchResults"})
-    print search_results
     # return iterable
     items = search_results.find_all('li', {'class':"story"})
-    # print items
     return items
 
-  def url(self, search_item):
+  def get_url(self, search_item):
     # url
     link = search_item.find('a', href=True)
     return link['href']
 
-  def headline(self, search_item):
+  def get_headline(self, search_item):
     # headline
     headline = search_item.find('span', {'class':"printHeadline"})
     #remove "Print Headline: " from headline
@@ -32,7 +33,7 @@ class NYTimes(BaseScraper):
     info = info.group(0)[1:-1]
     return info
 
-  def author(self, search_item):
+  def get_author(self, search_item):
     # author
     author =  search_item.find('span', {'class':"byline"})
     #remove "By " from author info
@@ -40,12 +41,12 @@ class NYTimes(BaseScraper):
     info = info.group(2) 
     return info
 
-  def date(self, search_item):
+  def get_date(self, search_item):
     # date
     date = search_item.find('span', {'class':"dateline"})
     return smart_str(date.contents[0]) 
 
-  def summary(self, search_item): 
+  def get_summary(self, search_item): 
     # summary 
     summary = search_item.find('p', {'class':"summary"})
     info = ""

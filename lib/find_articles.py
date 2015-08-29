@@ -14,8 +14,6 @@ from NYTimes import NYTimes
 # from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-
-# engine = create_engine('sqlite:///../db/database.db')
 Session = sessionmaker(bind=de.engine)
 session = Session()
 
@@ -25,7 +23,8 @@ nytimes = NYTimes(session)
 canidates = session.query(de.Canidate)
 sources = session.query(de.Source)
 
-print sources[0]
+print sources[0].name
+print canidates[0].last_name
 
 nytimes.get_search_results(sources[0],canidates[0])
 
