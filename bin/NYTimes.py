@@ -1,22 +1,30 @@
-from bs4 import BeautifulSoup
-from django.utils.encoding import smart_str
-import re
-import dryscrape
+import os, sys
+
+#first change the cwd to the script path
+scriptPath = os.path.realpath(os.path.dirname(sys.argv[0]))
+os.chdir(scriptPath)
+
+#append the relative location you want to import from
+sys.path.append("../lib")
+
+from base_scraper import BaseScraper
 
 class NYTimes(BaseScraper):
 
-  def iterable(soup):
+  def iterable(self, soup):
     search_results = soup.find("div", {"id": "searchResults"})
-    
+    print search_results
     # return iterable
-    return search_results.find_all('li', {'class':"story"}):
+    items = search_results.find_all('li', {'class':"story"})
+    # print items
+    return items
 
-  def url(search_item):
+  def url(self, search_item):
     # url
     link = search_item.find('a', href=True)
     return link['href']
 
-  def headline(search_item):
+  def headline(self, search_item):
     # headline
     headline = search_item.find('span', {'class':"printHeadline"})
     #remove "Print Headline: " from headline
@@ -24,7 +32,7 @@ class NYTimes(BaseScraper):
     info = info.group(0)[1:-1]
     return info
 
-  def author(search_item):
+  def author(self, search_item):
     # author
     author =  search_item.find('span', {'class':"byline"})
     #remove "By " from author info
@@ -32,12 +40,12 @@ class NYTimes(BaseScraper):
     info = info.group(2) 
     return info
 
-  def date(search_item):
+  def date(self, search_item):
     # date
     date = search_item.find('span', {'class':"dateline"})
     return smart_str(date.contents[0]) 
 
-  def summary(search_item): 
+  def summary(self, search_item): 
     # summary 
     summary = search_item.find('p', {'class':"summary"})
     info = ""
