@@ -4,6 +4,17 @@ class BaseScraper():
   def __init__(self):
     self.data = []
 
+  def make_soup(url):
+    # render html with dryscrape
+    session = dryscrape.Session()
+    session.visit(url)
+    eval_url = smart_str(session.url())
+    html = session.body() 
+
+    # create html soup
+    soup = BeautifulSoup(html)
+    return soup
+    
   def search_template(url):
     raise NotImplementedError
 
