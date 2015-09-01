@@ -58,14 +58,14 @@ class Article(Base):
   url           = Column(TEXT, unique=True, nullable=False)
   headline      = Column(TEXT, nullable=False)
   author_1      = Column(String(250), nullable=False)
-  author_2      = Column(String(250), nullable=False)
-  author_3      = Column(String(250), nullable=False)
+  author_2      = Column(String(250))
+  author_3      = Column(String(250))
   content       = Column(BLOB, unique=True)
-  publish_date  = Column(Date, nullable=False)
+  publish_date  = Column(DateTime, nullable=False)
   scrape_status = Column(String(250), nullable=False)
   created_at    = Column(DateTime, default=_get_date)
   updated_at    = Column(DateTime, onupdate=_get_date)
-  __table_args__ = (UniqueConstraint('source_id', 'canidate_id', name='headline'),)
+  __table_args__ = (UniqueConstraint('source_id', 'canidate_id', 'headline', name='unique_article'),)
 
 class Sentiment(Base):
   __tablename__ = 'sentiments'
@@ -78,6 +78,6 @@ class Sentiment(Base):
 
 # Connect to db
 engine = create_engine('sqlite://///home/ethan/Dropbox/Programs/election_sentiment/db/database.db')
- 
+
 # Create all schema
 Base.metadata.create_all(engine)

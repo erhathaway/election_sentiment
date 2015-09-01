@@ -2,6 +2,17 @@ from bs4 import BeautifulSoup
 from django.utils.encoding import smart_str
 import re
 import dryscrape
+import os, sys
+import datetime
+
+#first change the cwd to the script path
+scriptPath = os.path.realpath(os.path.dirname(sys.argv[0]))
+os.chdir(scriptPath)
+
+#append the relative location you want to import from
+sys.path.append("../db")
+
+from declaratives import Article 
 
 class BaseScraper():
   """Extendable scraper object used to scrape websites"""
@@ -41,6 +52,22 @@ class BaseScraper():
   # @classmethod
   # def store_search(source_object, canidate_object):
   def store_search(self, source_id, canidate_id, url, headline, author, date, summary):
+    #see if already in database
+    instance = self.session.query(Article).filter(Article.headline == headline).filter(Article.source_id == source_id).first()
+    if instance:
+      print "article already exists"
+      return "already exists"
+    else:
+      article = Article(
+        source_id     = source_id,
+        canidate_id   = canidate_id,
+        url           = url,
+        headline      = headline,
+        author_1      = author,
+        publish_date  = date,
+        scrape_status = "only scraped url")
+      self.session.add(article)
+      self.session.commit()
     return 0
 
   @classmethod
@@ -59,7 +86,7 @@ class BaseScraper():
   def validate(self, data):
     try:
       print data
-      return data
+      return unicode(data)
     except Exception, e:
       print e
       return 0
@@ -88,6 +115,7 @@ class BaseScraper():
       headline  = self.validate(self.get_headline(search_item))
       author    = self.validate(self.get_author(search_item))
       date      = self.validate(self.get_date(search_item))
+      date      = datetime.datetime.strptime(date, '%B %d, %Y')
       summary   = self.validate(self.get_summary(search_item))
 
       #check to make sure data should be stored
