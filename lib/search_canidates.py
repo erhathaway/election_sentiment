@@ -15,11 +15,11 @@ session = Session()
 
 
 # itterate through all canidates in db
-canidates = session.query(de.Canidate)
+canidates = session.query(de.Article)
 
 for person in canidates :
-  print (person.first_name + " " + person.last_name).lower()
-  print person.id
+  # print (person.first_name + " " + person.last_name).lower()
+  print person.headline
 
   # itterate through all sources in db
 sources = session.query(de.Source)

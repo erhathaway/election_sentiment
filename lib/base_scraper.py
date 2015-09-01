@@ -56,7 +56,7 @@ class BaseScraper():
     instance = self.session.query(Article).filter(Article.headline == headline).filter(Article.source_id == source_id).first()
     if instance:
       print "article already exists"
-      return "already exists"
+      return 1
     else:
       article = Article(
         source_id     = source_id,
@@ -68,7 +68,7 @@ class BaseScraper():
         scrape_status = "only scraped url")
       self.session.add(article)
       self.session.commit()
-    return 0
+      return 0
 
   @classmethod
   def store_content():
@@ -86,7 +86,7 @@ class BaseScraper():
   def validate(self, data):
     try:
       print data
-      return unicode(data)
+      return unicode(smart_str(data))
     except Exception, e:
       print e
       return 0
@@ -95,43 +95,47 @@ class BaseScraper():
   def get_search_results(self, source_object, canidate_object, max_duplicates=10):
     #init
     duplicates = 0 
-    page = '1'
+    page = 0
     
     #get ids
     source_id = source_object.id
     canidate_id = canidate_object.id
 
-    #form search_term
-    search_term = canidate_object.first_name + "+" + canidate_object.last_name
-    # make url
-    url = self.form_url(source_object, search_term, page)
-    # make soup
-    soup = self.make_soup(url)
+    while duplicates < max_duplicates:
+      page += 1
+      #form search_term
+      search_term = canidate_object.first_name + "+" + canidate_object.last_name
+      # make url
+      url = self.form_url(source_object, search_term, str(page))
+      # make soup
+      soup = self.make_soup(url)
 
-    # parse html for date of interest    
-    for search_item in self.iterable(soup):
-      #extract data
-      url       = self.validate(self.get_url(search_item))
-      headline  = self.validate(self.get_headline(search_item))
-      author    = self.validate(self.get_author(search_item))
-      date      = self.validate(self.get_date(search_item))
-      date      = datetime.datetime.strptime(date, '%B %d, %Y')
-      summary   = self.validate(self.get_summary(search_item))
+      # parse html for date of interest    
+      for search_item in self.iterable(soup):
+        print duplicates
+        print ""
+        #extract data
+        url       = self.validate(self.get_url(search_item))
+        headline  = self.validate(self.get_headline(search_item))
+        author    = self.validate(self.get_author(search_item))
+        date      = self.validate(self.get_date(search_item))
+        date      = datetime.datetime.strptime(date, '%B %d, %Y')
+        summary   = self.validate(self.get_summary(search_item))
 
-      #check to make sure data should be stored
-      if duplicates >= max_duplicates:
-        print "Max duplicates reached"
-        return "Finish scraped"
-      elif url != 0 and headline != 0 and author != 0 and date != 0 and summary !=0:
-        # store data
-        status = self.store_search(source_id, canidate_id, url, headline, author, date, summary)
-        # if data is NOT already in the database
-        if status != 0:
-          duplicates +=1
-      else:
-        print "Error storing search item"
+        #check to make sure data should be stored
+        if duplicates >= max_duplicates:
+          print "Max duplicates reached"
+          return "Finish scraped"
+        elif url != 0 and headline != 0 and author != 0 and date != 0 and summary !=0:
+          # store data
+          status = self.store_search(source_id, canidate_id, url, headline, author, date, summary)
+          # if data is NOT already in the database
+          if status != 0:
+            duplicates +=1
+        else:
+          print "Error storing search item"
 
 
-    # for canidate in canidates:
-      # search_template(canidate)
+      # for canidate in canidates:
+        # search_template(canidate)
 
