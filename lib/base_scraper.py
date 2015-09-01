@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-from django.utils.encoding import smart_str
+from django.utils.encoding import smart_str, force_unicode
 import re
 import dryscrape
 import os, sys
@@ -86,7 +86,7 @@ class BaseScraper():
   def validate(self, data):
     try:
       print data
-      return unicode(smart_str(data))
+      return force_unicode(data)
     except Exception, e:
       print e
       return 0
