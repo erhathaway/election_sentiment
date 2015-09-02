@@ -56,6 +56,7 @@ class Article(Base):
   canidate      = relationship(Canidate)
   canidate_mention_count = Column(Integer)
   url           = Column(TEXT, unique=True, nullable=False)
+  headline_raw  = Column(TEXT, nullable=False)
   headline      = Column(TEXT, nullable=False)
   author_1      = Column(String(250), nullable=False)
   author_2      = Column(String(250))
