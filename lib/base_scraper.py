@@ -51,23 +51,34 @@ class BaseScraper():
 
   # @classmethod
   # def store_search(source_object, canidate_object):
-  def store_search(self, source_id, canidate_id, url, headline, author, date, summary):
-    #see if already in database
-    instance = self.session.query(Article).filter(Article.headline == headline).filter(Article.source_id == source_id).first()
-    if instance:
-      print "article already exists"
-      return 1
+  def store_search(self, source_id, canidate_id, verification_term, url, headline, author, date, summary):
+    #init
+    headline_raw = headline
+    headline = headline.lower()
+
+    if verification_term.lower() in headline:
+      #see if already in database
+      instance = self.session.query(Article).filter(Article.headline == headline).filter(Article.source_id == source_id).first()
+      if instance:
+        print "article already exists"
+        return 1
+      else:
+        article = Article(
+          source_id     = source_id,
+          canidate_id   = canidate_id,
+          url           = url,
+          headline_raw  = headline_raw,
+          headline      = headline,
+          author_1      = author,
+          pub_date  = date,
+          scrape_status = "only scraped url")
+        self.session.add(article)
+        self.session.commit()
+        return 0
     else:
-      article = Article(
-        source_id     = source_id,
-        canidate_id   = canidate_id,
-        url           = url,
-        headline      = headline,
-        author_1      = author,
-        publish_date  = date,
-        scrape_status = "only scraped url")
-      self.session.add(article)
-      self.session.commit()
+      print "verification term not found in headline"
+      # return 0 because status only looks at duplicates and
+      # we don't want this to count towards the total duplicate count
       return 0
 
   @classmethod
@@ -92,16 +103,22 @@ class BaseScraper():
       return 0
 
   # @staticmethod
-  def get_search_results(self, source_object, canidate_object, max_duplicates=10):
+  def get_search_results(self, source_object, canidate_object, max_duplicates=10, oldest_article_date = "01/01/2015"):
     #init
     duplicates = 0 
     page = 0
+    date = datetime.datetime.today()
+    oldest_article_date = datetime.datetime.strptime(oldest_article_date, '%m/%d/%Y') 
     
-    #get ids
+    #get info from db objects
     source_id = source_object.id
     canidate_id = canidate_object.id
+    verification_term = canidate_object.last_name
 
-    while duplicates < max_duplicates:
+    while duplicates < max_duplicates and date >= oldest_article_date :
+      print date
+      print oldest_article_date
+      print " "
       page += 1
       #form search_term
       search_term = canidate_object.first_name + "+" + canidate_object.last_name
@@ -128,9 +145,11 @@ class BaseScraper():
           return "Finish scraped"
         elif url != 0 and headline != 0 and author != 0 and date != 0 and summary !=0:
           # store data
-          status = self.store_search(source_id, canidate_id, url, headline, author, date, summary)
+          status = self.store_search(source_id, canidate_id, verification_term, url, headline, author, date, summary)
           # if data is NOT already in the database
           if status != 0:
+            print status
+            print "whhha"
             duplicates +=1
         else:
           print "Error storing search item"

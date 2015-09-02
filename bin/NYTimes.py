@@ -34,16 +34,20 @@ class NYTimes(BaseScraper):
     return info
 
   def get_author(self, search_item):
-    try:
-      # author
-      author =  search_item.find('span', {'class':"byline"})
-      #remove "By " from author info
-      info = re.search('(By )(.*)', smart_str(author.contents[0]))
-      info = info.group(2) 
-      return info
-    except Exception, e:
-      print e
-      return e
+    # try:
+    # author
+    author =  search_item.find('span', {'class':"byline"})
+    #remove "By " from author info
+    author_stuff = smart_str(author.contents[0])
+    info = re.search('(By )(.*)', author_stuff)
+    if info:
+      info = info.group(2)
+    else:
+      info = author_stuff
+    return info
+    # except Exception, e:
+    #   print e
+    #   return e
   def get_date(self, search_item):
     # date
     date = search_item.find('span', {'class':"dateline"})
