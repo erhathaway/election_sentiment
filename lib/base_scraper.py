@@ -175,3 +175,31 @@ class BaseScraper():
       # for canidate in canidates:
         # search_template(canidate)
 
+  def get_content(self, article_object):
+    #init
+
+    #get info from db objects
+    verification_term = article_object.canidate.first_name + article_object.canidate.last_name
+
+    # make soup
+    soup = self.make_soup(url)
+
+    #extract data
+    headline  = self.validate(self.get_headline(soup))
+    author    = self.validate(self.get_author(soup))
+    date      = self.validate(self.get_date(soup))
+    date      = datetime.datetime.strptime(date, '%B %d, %Y')
+    story     = self.validate(self.get_summary(soup))
+
+      
+    if url != 1 and headline != 1 and author != 1 and date != 1 and story !=1:
+      # store data
+      status = self.store_content(article_id, verification_term, url, headline, author, date, story)
+      
+      # if data is already in the database
+      if status != 0:
+        print status
+        print "whhha"
+        duplicates +=1
+    else:
+      print "Error storing search item"
