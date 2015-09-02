@@ -4,6 +4,7 @@ import re
 import dryscrape
 import os, sys
 import datetime
+import time
 
 #first change the cwd to the script path
 scriptPath = os.path.realpath(os.path.dirname(sys.argv[0]))
@@ -22,14 +23,27 @@ class BaseScraper():
 
   def make_soup(self, url):
     # render html with dryscrape
-    session = dryscrape.Session()
-    session.visit(url)
-    eval_url = smart_str(session.url())
-    html = session.body() 
+    time.sleep(3)
+    try:
+      session = dryscrape.Session()
+      session.visit(url)
+      eval_url = smart_str(session.url())
+      html = session.body() 
 
-    # create html soup
-    soup = BeautifulSoup(html)
-    return soup
+      # create html soup
+      soup = BeautifulSoup(html)
+
+      # sometimes making the soup doesn't work. this could be a browser error...
+      # check to make sure soup exists before continuing:
+      if soup is None:
+        self.make_soup(url)
+      else:
+        return soup
+
+    except Exception, e:
+      print e
+      self.make_soup(url)
+
 
   def iterable(self, soup):
     raise NotImplementedError
