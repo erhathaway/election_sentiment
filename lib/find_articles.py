@@ -24,9 +24,9 @@ canidates = session.query(de.Canidate)
 sources = session.query(de.Source)
 
 print sources[0].name
-print canidates[0].last_name
+print canidates[1].last_name
 
-nytimes.get_search_results(sources[0],canidates[0])
+nytimes.get_search_results(sources[0],canidates[1])
 
 
 

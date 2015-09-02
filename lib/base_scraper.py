@@ -97,10 +97,13 @@ class BaseScraper():
   def validate(self, data):
     try:
       print data
-      return force_unicode(data)
+      if data != 1:
+        return force_unicode(data)
+      else:
+        return 1
     except Exception, e:
       print e
-      return 0
+      return 1
 
   # @staticmethod
   def get_search_results(self, source_object, canidate_object, max_duplicates=10, oldest_article_date = "01/01/2015"):
@@ -143,7 +146,7 @@ class BaseScraper():
         if duplicates >= max_duplicates:
           print "Max duplicates reached"
           return "Finish scraped"
-        elif url != 0 and headline != 0 and author != 0 and date != 0 and summary !=0:
+        elif url != 1 and headline != 1 and author != 1 and date != 1 and summary !=1:
           # store data
           status = self.store_search(source_id, canidate_id, verification_term, url, headline, author, date, summary)
           # if data is NOT already in the database
