@@ -48,6 +48,8 @@ O'Malley doesn't always match in headline when it should...
 
 ###### Resolved errors:
 
+1. There are no search results: 
+
 ```
 {"class":"InvalidResponseError","message":"Unable to load URL: http://query.nytimes.com/search/sitesearch/?action=click&contentCollection&region=TopBar&WT.nav=searchWidget&module=SearchSubmit&pgtype=Homepage#/elizabeth+WARREN/since1851/allresults/23/allauthors/newest/ because of error loading http://3951336.fls.doubleclick.net/activityi;src=3951336;type=digit0;cat=tier30;ord=4332975815050.3037?: Unknown error"}
 Traceback (most recent call last):
