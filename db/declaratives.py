@@ -58,6 +58,7 @@ class Article(Base):
   url           = Column(TEXT, unique=True, nullable=False)
   headline_raw  = Column(TEXT, nullable=False)
   headline      = Column(TEXT, nullable=False)
+  #violate no null db design principle for authors to save row space on heroku :(
   author_1      = Column(String(250), nullable=False)
   author_2      = Column(String(250))
   author_3      = Column(String(250))
