@@ -3,7 +3,7 @@ The purpose of this project is two-fold:
 1. Teach others how to code through an interesting project that uses db, orms, webscraping, analysis libraries, modern web frameworks, etc..
 2. Create a sentiment analyzer for presidential hopefuls based of media reports 
 
-### Objective: 
+## Objective: 
 
 1. Monitor a set of media sites (such as the top 10 broadcast news outlets by traffic)
 2. Whenever an article is published about a presediential canidate, download the article
@@ -11,7 +11,7 @@ The purpose of this project is two-fold:
 4. Display the results of sentiment change over time for different news outlets
 5. Add correlations to election events
 
-### Technical Details:
+## Technical Outline:
 
 The project has three distinct phases:
 
@@ -32,15 +32,15 @@ The project has three distinct phases:
  - Visulization: D3.js
  - Database: Postgres using JSON Documents
 
-### Git Workflow:
+## Git Workflow:
 
 ![Workflow for new project contributors](/img/git_workflow.png)
 
-### Documentation Standards
+## Documentation Standards
 
 
 
-### Development Environment
+## Development Environment
 
 #### Overview
 
@@ -69,7 +69,7 @@ A virtual environment module (named [Venv](https://docs.python.org/3/library/ven
 
 `$ pip freeze > requirements.txt`
 
-### TODO
+## TODO
 
 #### Architecture
 
