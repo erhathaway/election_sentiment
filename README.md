@@ -38,6 +38,9 @@ The project has three distinct phases:
 
 ## Documentation Standards
 
+Documentation is hard. But when you do it, you should be concistent, concise, and thorough. 
+
+The [Google Docstring Style Guide](http://sphinxcontrib-napoleon.readthedocs.org/en/latest/example_google.html) is an ideal way to do documentation. 
 
 
 ## Development Environment
