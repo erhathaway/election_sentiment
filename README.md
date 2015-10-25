@@ -5,7 +5,7 @@ The purpose of this project is two-fold:
 1. Teach others how to code through an interesting project that uses db, orms, webscraping, analysis libraries, modern web frameworks, etc..
 2. Create a sentiment analyzer for presidential hopefuls based of media reports 
 
-## Objective: 
+### Objective: 
 
 1. Monitor a set of media sites (such as the top 10 broadcast news outlets by traffic)
 2. Whenever an article is published about a presediential canidate, download the article
@@ -13,7 +13,7 @@ The purpose of this project is two-fold:
 4. Display the results of sentiment change over time for different news outlets
 5. Add correlations to election events
 
-## Technical Outline:
+### Technical Outline:
 
 The project has three distinct phases:
 
@@ -34,18 +34,18 @@ The project has three distinct phases:
  - Visulization: D3.js
  - Database: Postgres using JSON Documents
 
-## Git Workflow:
+### Git Workflow:
 
 ![Workflow for new project contributors](/img/git_workflow.png)
 
-## Documentation Standards
+### Documentation Standards
 
 Documentation is hard. But when you do it, you should be concistent, concise, and thorough. 
 
 The [Google Docstring Style Guide](http://sphinxcontrib-napoleon.readthedocs.org/en/latest/example_google.html) is an ideal way to do documentation. 
 
 
-## Development Environment
+### Development Environment
 
 #### Overview
 
@@ -74,7 +74,7 @@ A virtual environment module (named [Venv](https://docs.python.org/3/library/ven
 
 `$ pip freeze > requirements.txt`
 
-## TODO
+### TODO
 
 #### Architecture
 
