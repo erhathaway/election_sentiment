@@ -28,7 +28,7 @@ Sentiment analyzer for presidential hopefuls based of media reports
  - Visulization: D3.js
  - Database: Postgres using JSON Documents
 
-### Workflow:
+### Git Workflow:
 
 ![Workflow for new project contributors](/img/git_workflow.png)
 
