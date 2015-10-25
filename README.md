@@ -1,5 +1,7 @@
 # election_sentiment
-Sentiment analyzer for presidential hopefuls based of media reports 
+The purpose of this project is two-fold:
+1. Teach others how to code through an interesting project that uses db, orms, webscraping, analysis libraries, modern web frameworks, etc..
+2. Create a sentiment analyzer for presidential hopefuls based of media reports 
 
 ### Objective: 
 
@@ -10,6 +12,8 @@ Sentiment analyzer for presidential hopefuls based of media reports
 5. Add correlations to election events
 
 ### Technical Details:
+
+The project has three distinct phases:
 
 1. Web scraping
  - LXML and Beautiful Soup
@@ -32,6 +36,38 @@ Sentiment analyzer for presidential hopefuls based of media reports
 
 ![Workflow for new project contributors](/img/git_workflow.png)
 
+### Documentation Standards
+
+
+
+### Development Environment
+
+#### Overview
+
+A big problem with projects involving more than one person is being consistent about which versions of third party code (libraries) and programming languages are used. One easy way to solve this problem is with a virtual environment. 
+
+#### Example 
+
+The necessity of a virtual environment can easily be seen with the differences between Python 2 and Python 3. Python 3 is not backwards compatible with Python 2. Thus, trying to run Python 2 code using Python 3 wont work. 
+Backwards compatibility is not always preserved with major release upgrades. If a project follows [Semantic versioning](http://semver.org/) aka Major.Minor.Patch numbering (like 2.1.0). The Major version number repressents a backwards incompatible update. Minor version represents a backwards compatible update. Patch is a backwards-compatible bug fix. 
+
+#### Solution: Virtual Environments
+
+A virtual environment module (named [Venv](https://docs.python.org/3/library/venv.html) is included by default in Python 3. [Python-guide.org](http://docs.python-guide.org/en/latest/dev/virtualenvs/) has a pretty good and simple outline on how to use it. 
+
+#### Venv Cheatsheet
+
+1) Use virtualenv to make sure versioning and dependencies of python and required libraries are correct
+
+`$ source my_project/venv/bin/activate`
+
+2) Virtualenv should be loaded from the requriements.txt. This gets rid of hardcoding issues and makes it so we don't have to sync libaries over github.
+
+`$ pip install -r requirements.txt`
+
+3) When you make a change to any dependency, you should freeze the current state of the environment packages and regenerate the requirements.txt file
+
+`$ pip freeze > requirements.txt`
 
 ### TODO
 
