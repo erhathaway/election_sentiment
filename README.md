@@ -1,5 +1,7 @@
 # election_sentiment
+
 The purpose of this project is two-fold:
+
 1. Teach others how to code through an interesting project that uses db, orms, webscraping, analysis libraries, modern web frameworks, etc..
 2. Create a sentiment analyzer for presidential hopefuls based of media reports 
 
